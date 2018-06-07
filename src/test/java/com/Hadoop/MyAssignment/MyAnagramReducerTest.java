@@ -10,7 +10,7 @@ import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.Util.StringTools.IterableSplit;
+import util.StringTools.IterableSplit;
 import com.sun.tools.internal.xjc.Driver;
 
 public class MyAnagramReducerTest

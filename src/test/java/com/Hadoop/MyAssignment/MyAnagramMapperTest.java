@@ -9,7 +9,7 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.Util.StringTools.StringInnerSort;
+import util.StringTools.StringInnerSort;
 
 public class MyAnagramMapperTest
 {

@@ -1,6 +1,6 @@
 package com.Hadoop.MyAssignment;
 
-import com.Util.StringTools.IterableSplit;
+import util.StringTools.IterableSplit;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 

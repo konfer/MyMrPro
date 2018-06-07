@@ -1,6 +1,6 @@
 package com.Hadoop.MyAssignment;
 
-import com.Util.StringTools.StringInnerSort;
+import util.StringTools.StringInnerSort;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

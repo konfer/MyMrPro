@@ -1,4 +1,4 @@
-package com.Util.StringTools;
+package util.StringTools;
 
 import java.util.Arrays;
 
