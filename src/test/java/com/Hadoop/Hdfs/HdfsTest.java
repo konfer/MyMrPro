@@ -1,5 +1,6 @@
 package com.Hadoop.Hdfs;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -141,6 +142,8 @@ public class HdfsTest
 			}
 		}
 	}
+	
+	
 	
 	@After
 	public void finished() throws IOException
