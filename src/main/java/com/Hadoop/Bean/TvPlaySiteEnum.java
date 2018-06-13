@@ -4,7 +4,7 @@ public enum TvPlaySiteEnum
 {
 	//1优酷2搜狐3土豆4爱奇艺5迅雷看看
 	Youku("Youku","1"),
-	Sohu("Sohu","2"),
+	Sohu("Souhu","2"),
 	Tudou("Tudou","3"),
 	Iqiyi("Iqiyi","4"),
 	Xunlei("Xunlei","5");
@@ -18,15 +18,16 @@ public enum TvPlaySiteEnum
 		this.index=index;
 	}
 	
-	public static String getName(String index) 
+	public static String getName(String index) throws Exception 
 	{  
         for (TvPlaySiteEnum c : TvPlaySiteEnum.values()) 
         {  
-            if (c.getIndex() == index) {  
+            if (c.getIndex().equals(index)) 
+            {  
                 return c.name;  
             }  
         }  
-        return null;  
+        throw new Exception();
     }
 
 	public void setName(String name)

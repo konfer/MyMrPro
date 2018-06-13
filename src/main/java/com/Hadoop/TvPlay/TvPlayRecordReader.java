@@ -15,6 +15,7 @@ import org.apache.hadoop.util.LineReader;
 
 import com.Hadoop.Bean.WritableBean.TvplayWritable;
 
+import util.StringTools.AppendString;
 import util.StringTools.StringSplitter;
 
 public class TvPlayRecordReader extends RecordReader<Text, TvplayWritable>
@@ -78,10 +79,10 @@ public class TvPlayRecordReader extends RecordReader<Text, TvplayWritable>
 		{
 			return false;
 		}
-		String[] records=StringSplitter.tabSplitter("\t");
+		String[] records=StringSplitter.tabSplitter(line.toString());
 		if(records.length==7)
 		{
-			lineKey.set(records[0]+"|"+records[1]);
+			lineKey.set(AppendString.AppendByAt(records[0], records[1]));
 			tvPlayValue.set(Integer.parseInt(records[2]),Integer.parseInt(records[3]),Integer.parseInt(records[4])
 	        		,Integer.parseInt(records[5]),Integer.parseInt(records[6]));
 			return true;

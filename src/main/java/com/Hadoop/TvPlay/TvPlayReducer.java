@@ -9,6 +9,8 @@ import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import com.Hadoop.Bean.TvPlaySiteEnum;
 import com.Hadoop.Bean.WritableBean.TvplayWritable;
 
+import util.StringTools.StringSplitter;
+
 public class TvPlayReducer extends Reducer<Text, TvplayWritable, Text, Text>
 {
 	private MultipleOutputs<Text, Text> mos;
@@ -43,11 +45,19 @@ public class TvPlayReducer extends Reducer<Text, TvplayWritable, Text, Text>
 			totalPhraseNum=tvPlayRecord.getPhraseNum();
 		}
 		
-		String[] records = key.toString().split("\t");
+		String[] records = StringSplitter.atSplitter(key.toString());
 		tvPlayKey.set(records[0]);
+		
 		tvPlayValue.set(totalPlayNum+"\t"+totalCollectedNum+"\t"+totalCommentNum+"\t"+totalDissNum+"\t"+totalPhraseNum);
 		
-		mos.write(TvPlaySiteEnum.getName(records[1]), tvPlayKey, tvPlayValue);
+		try
+		{
+			mos.write(TvPlaySiteEnum.getName(records[1]), tvPlayKey, tvPlayValue);
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

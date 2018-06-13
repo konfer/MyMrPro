@@ -1,5 +1,7 @@
 package com.Hadoop.TvPlay;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +16,9 @@ import org.apache.hadoop.util.ToolRunner;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.Hadoop.Bean.TvPlaySiteEnum;
+
+import util.StringTools.AppendString;
 import util.StringTools.StringSplitter;
 
 public class MyTvPlayFileInputStreamTest 
@@ -33,16 +38,16 @@ public class MyTvPlayFileInputStreamTest
 		localFiles=FileSystem.getLocal(conf);
 	}
 	
-	
 
-	//@Test
-	public void TvPlayJobRun() throws Exception
+	@Test
+	public void testTvPlayJobRun() throws Exception
 	{
 		String[] args= {
 			"hdfs://MyHadoopMasterMachine:9000/data/TvPlay/tvplay.txt",
 			"hdfs://MyHadoopMasterMachine:9000/data/output/TvPlay/"
 		};
 		int result=ToolRunner.run(new Configuration(), new TvPlayConf(), args);
+		//System.exit(result);
 	}
 	
 	@Test
@@ -75,11 +80,21 @@ public class MyTvPlayFileInputStreamTest
             }  
         }  
         String[] pieces=StringSplitter.tabSplitter(lineTxt);
-        for(String str:pieces)
-        {
-        	System.out.println(str);
-        }
+        String tvPlayKey=AppendString.AppendByAt(pieces[0], pieces[1]);
+        String[] records=StringSplitter.atSplitter(tvPlayKey);
+        assert pieces[0].equals(records[0]);
+        assert pieces[1].equals(records[1]);
+        
 	}
 	
+	@Test
+	public void testTvPlaySiteEnum() throws Exception
+	{
+		String index="3";
+		String name=TvPlaySiteEnum.getName(index);
+		assert name.equals("Tudou");
+		
+			
+	}
 	
 }

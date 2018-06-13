@@ -40,8 +40,8 @@ public class TvPlayConf extends Configured implements Tool
 
 			job = Job.getInstance(conf, "TvPlayStat");
 
-			job.setJarByClass(AnagramConf.class);
-			job.setMapperClass(AnagramsStatMapper.class);
+			job.setJarByClass(TvPlayConf.class);
+			job.setMapperClass(TvPlayMapper.class);
 			job.setReducerClass(TvPlayReducer.class);
 			
 			job.setMapOutputKeyClass(Text.class);
@@ -51,24 +51,21 @@ public class TvPlayConf extends Configured implements Tool
 			
 			job.setInputFormatClass(TvPlayInputFormat.class);
 			
-			MultipleOutputs.addNamedOutput(job, "youku", TextOutputFormat.class,
-					Text.class, Text.class);
-			MultipleOutputs.addNamedOutput(job, "souhu", TextOutputFormat.class,
-					Text.class, Text.class);
-			MultipleOutputs.addNamedOutput(job, "tudou", TextOutputFormat.class,
-					Text.class, Text.class);
-			MultipleOutputs.addNamedOutput(job, "aiqiyi", TextOutputFormat.class,
-					Text.class, Text.class);
-			MultipleOutputs.addNamedOutput(job, "xunlei", TextOutputFormat.class,
-					Text.class, Text.class);
+			MultipleOutputs.addNamedOutput(job, "Youku", TextOutputFormat.class,Text.class, Text.class);
+			MultipleOutputs.addNamedOutput(job, "Souhu", TextOutputFormat.class,Text.class, Text.class);
+			MultipleOutputs.addNamedOutput(job, "Tudou", TextOutputFormat.class,Text.class, Text.class);
+			MultipleOutputs.addNamedOutput(job, "Iqiyi", TextOutputFormat.class,Text.class, Text.class);
+			MultipleOutputs.addNamedOutput(job, "Xunlei", TextOutputFormat.class,Text.class, Text.class);
 
 			FileInputFormat.addInputPath(job, new Path(args[0]));
 			FileOutputFormat.setOutputPath(job, new Path(args[1]));
+			
 
 			result = job.waitForCompletion(true) ? 0 : 1;
 
 		} catch (Exception e)
 		{
+			System.out.println(e);
 			e.printStackTrace();
 		}
 		return 0;

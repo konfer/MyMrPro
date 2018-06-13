@@ -41,14 +41,14 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void mkdir() throws IllegalArgumentException, IOException
+	public void testMkdir() throws IllegalArgumentException, IOException
 	{
 		fs.mkdirs(new Path("/EclipseDir/input"));
 		//fs.delete(new Path("/EclipseDir/input");
 	}
 	
 	@Test
-	public void copyToHDFS() throws IOException 
+	public void testCopyToHDFS() throws IOException 
 	{
 		Path scrPath=new Path("/usr/local/kof/hadoop-2.8.4/input/weather.rar");
 		Path dstPath=new Path("/EclipseDir/input");
@@ -56,7 +56,7 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void copyFileToLocal() throws IOException
+	public void testCopyFileToLocal() throws IOException
 	{
 		Path srcPath=new Path("/EclipseDir/input/wordcount");
 		Path dstPath=new Path("/usr/local/kof/eclipseProTest");
@@ -64,7 +64,15 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void listAllFile() throws FileNotFoundException, IOException
+	public void getTvPlayResult() throws IOException
+	{
+		Path srcPath=new Path("/data/output/TvPlay");
+		Path dstPath=new Path("/usr/local/kof/eclipseProTest");
+		fs.copyToLocalFile(srcPath, dstPath);
+	}
+	
+	@Test
+	public void testListAllFile() throws FileNotFoundException, IOException
 	{ 
 		Path srcPath=new Path("/EclipseDir/input");
 		FileStatus[] status=fs.listStatus(srcPath);
@@ -77,7 +85,7 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void getFileLocal() throws IOException
+	public void testGetFileLocal() throws IOException
 	{
 		Path p=new Path("/EclipseDir/input/wordcount");
 		FileStatus fileStatus=fs.getFileStatus(p);
@@ -90,7 +98,7 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void getHDFSNodes() throws IOException
+	public void testGetHDFSNodes() throws IOException
 	{
 		DistributedFileSystem hdfs=(DistributedFileSystem)fs;
 		DatanodeInfo[] dataNodeInfoStauts=hdfs.getDataNodeStats();
@@ -101,7 +109,7 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void upLoadFiles() throws IOException
+	public void testUpLoadFiles() throws IOException
 	{
 		
 		FileStatus[] localStatus=localFiles.globStatus(new Path("/usr/local/kof/data/205_data/data/*"));
@@ -114,7 +122,7 @@ public class HdfsTest
 	}
 	
 	@Test
-	public void upLoadCompressedFilesToHdfs() throws IOException
+	public void testUpLoadCompressedFilesToHdfs() throws IOException
 	{
 		FileStatus[] upLoadStatus=localFiles.globStatus(new Path("/mnt/hgfs/ShareFolder/73/*"),new RegexAcceptPathFilter("^.*svn$", false));
 		Path[] upLoaddirs=FileUtil.stat2Paths(upLoadStatus);
