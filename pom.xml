@@ -11,7 +11,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
-  <build>
+   <build>
 	<plugins>
 		<plugin>
 			<artifactId>maven-compiler-plugin</artifactId>
@@ -31,7 +31,7 @@
 				</descriptorRefs>
 				<archive>
 					<manifest>
-						<mainClass>com.Hadoop.MyAssingment.AnagramConf</mainClass>
+						<mainClass>com.Hadoop.MyAssignment.AnagramConf</mainClass>
 					</manifest>
 				</archive>
 			</configuration>
@@ -49,6 +49,7 @@
 
 	</build>
   
+ 
     <dependencies>
   
         <dependency>  
@@ -116,6 +117,13 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        
+        <dependency>
+    		<groupId>org.apache.zookeeper</groupId>
+   			<artifactId>zookeeper</artifactId>
+   			<version>3.4.12</version>
+   		 	<type>pom</type>
+		</dependency>
     
     
   </dependencies>
