@@ -27,6 +27,7 @@ public class HdfsTest
 {
 	private Configuration conf;
 	private FileSystem fs;
+	private FileSystem haFs;
 	private FileSystem localFiles;
 	
 	private FSDataInputStream in;
@@ -37,7 +38,18 @@ public class HdfsTest
 	{
 		conf=new Configuration();
 		fs=FileSystem.get(URI.create("hdfs://MyHadoopMasterMachine:9000"),conf);
+		System.out.println("fs: "+fs);
+		haFs=FileSystem.get(URI.create("hdfs://MyHadoopCluster:9000"),conf);
+		
+		System.out.println("haFs: "+haFs);
+		
 		localFiles=FileSystem.getLocal(conf);
+	}
+	
+	@Test
+	public void testHdfsConnection() throws IllegalArgumentException, IOException
+	{
+		haFs.mkdirs(new Path("/EclipseDir/input"));
 	}
 	
 	@Test
@@ -63,7 +75,7 @@ public class HdfsTest
 		fs.copyToLocalFile(srcPath, dstPath);
 	}
 	
-	@Test
+	//@Test
 	public void getTvPlayResult() throws IOException
 	{
 		Path srcPath=new Path("/data/output/TvPlay");
