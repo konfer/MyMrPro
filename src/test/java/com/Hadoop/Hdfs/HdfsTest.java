@@ -38,10 +38,7 @@ public class HdfsTest
 	{
 		conf=new Configuration();
 		fs=FileSystem.get(URI.create("hdfs://MyHadoopMasterMachine:9000"),conf);
-		System.out.println("fs: "+fs);
-		haFs=FileSystem.get(URI.create("hdfs://MyHadoopCluster:9000"),conf);
 		
-		System.out.println("haFs: "+haFs);
 		
 		localFiles=FileSystem.getLocal(conf);
 	}
