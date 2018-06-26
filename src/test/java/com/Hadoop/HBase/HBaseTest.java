@@ -90,7 +90,6 @@ public class HBaseTest
 		
 		table.addFamily(new HColumnDescriptor("address").setCompressionType(Algorithm.NONE));
 		table.addFamily(new HColumnDescriptor("info").setCompressionType(Algorithm.NONE));
-		table.addFamily(new HColumnDescriptor("num").setCompressionType(Algorithm.NONE));
 		
 		hBaseAdmin.createTable(table);
 
@@ -186,7 +185,13 @@ public class HBaseTest
 	@Test
 	public void testAHDelete() throws IOException
 	{
-		hTable.delete(d);
+		if(hBaseAdmin.tableExists(tableName))
+		{
+			d.addFamily(MyStringUtil.getBytes("address"));
+			hTable.delete(d);
+			d.addFamily(MyStringUtil.getBytes("info"));
+			hTable.delete(d);
+		}
 	}
 	
 	@After
